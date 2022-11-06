@@ -7,6 +7,20 @@ use Illuminate\Foundation\Http\FormRequest;
 /** @SuppressWarnings(PHPMD.NumberOfChildren) */
 class BaseRequest extends FormRequest
 {
+    const MIN_LENGTH_EMAIL = 3;
+    const MAX_LENGTH_EMAIL = 250;
+
+    const MIN_LENGTH_PASSWORD = 8;
+    const MAX_LENGTH_PASSWORD = 256;
+
+    const MAX_LENGTH_NAME_ACCOUNT = 256;
+
+    const INT_32_MIN = 1;
+    const LIMIT_DEFAULT_MAX = 100;
+    const ORDER_DEFAULT_LENGTH = 100;
+    const WITH_DEFAULT_LENGTH = 500;
+
+    const MAX_SIZE_IMAGE = 5130;
 
     /**
      * Common list rules

@@ -22,7 +22,6 @@ return [
         'bag_shipment' => '袋の配送担当',
         'shared_mail' => '配信先メールアドレス',
         'collection_reception' => '集荷受付',
-        'factory_id' => '工場ID',
         'note' => '説明',
         'image' => '表示画像',
         'is_use' => '表示・非表示',
@@ -55,8 +54,7 @@ return [
             'cost_rate' => '原価率',
             'storage_service' => '保管サービス',
             'storage_period' => '保管期間',
-            'option_master_ids' => '対応オプション',
-            'factory_ids' => '対応工場',
+            'option_master_ids' => '対応オプション'
         ],
     ],
     'after' => ':attributeは:dateより未来の日時で設定してください',

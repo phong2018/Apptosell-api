@@ -6,23 +6,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use App\Models\Traits\HasPassword;
+use App\Models\Traits\Role;
+use App\Notifications\AdminResetPasswordNotification;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Mi\L9DBEncrypt\Traits\EncryptedAttribute;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Admin extends Authenticatable
+class Admin extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    use EncryptedAttribute;
+    use HasPassword, HasFactory, Notifiable, EncryptedAttribute, SoftDeletes, Role;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+    protected $table = 'admins';
+
     protected $fillable = [
         'name',
         'email',
         'password',
-        'is_super_admin'
+        'is_first_admin',
+        'permission'
     ];
     /* attributes need encrypt */
     protected $encryptable = [
@@ -34,8 +41,7 @@ class Admin extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password'
     ];
 
     /**
@@ -44,6 +50,20 @@ class Admin extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new AdminResetPasswordNotification($token));
+    }
 }

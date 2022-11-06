@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('service_menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->smallInteger ('is_super_admin')->default(0);
-            $table->smallInteger ('permission')->default(1);
-            $table->softDeletes();
+            $table->text('note');
+            $table->text('image')->nullable();
+            $table->smallInteger('is_use')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('service_menus');
     }
 };
