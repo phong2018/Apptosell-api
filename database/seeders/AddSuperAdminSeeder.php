@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Enums\Permission;
+use App\Models\Admin;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class AddSuperAdminSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('admins')->truncate();
+        $adminData = [
+            'name'     => 'apptosell Admin',
+            'email'    => 'admin@dln.net',
+            'permission'     => 1,
+            'is_super_admin'     => 1,
+            'password' => 'Admin123@'
+        ];
+
+        Admin::create($adminData);
+    }
+}
