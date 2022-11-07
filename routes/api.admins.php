@@ -16,4 +16,5 @@ Route::group(['middleware' => ['auth:admins']], function () {
         Route::post('change-password', 'changePassword')->name('change-password');
     });
     Route::apiResource('service-menus', ServiceMenuController::class)->except('destroy');
+    Route::apiResource('roles', RoleController::class)->except('destroy');
 });
