@@ -28,7 +28,8 @@ class UpdateAdminService extends BaseService
         $dataAdmin = $this->data->only([
             'name',
             'email',
-            'permission'
+            'permission',
+            'role_id'
         ])->toArray();
 
         return $admin->update($dataAdmin);

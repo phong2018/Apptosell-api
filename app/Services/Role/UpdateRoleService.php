@@ -2,7 +2,6 @@
 
 namespace App\Services\Role;
 
-use App\Common\Image;
 use App\Repositories\RoleRepository;
 use Mi\L5Core\Services\BaseService;
 

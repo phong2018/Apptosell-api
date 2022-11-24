@@ -25,7 +25,7 @@ class SendMailResetPasswordService extends BaseService
     {
         $user   = $this->getUser($this->data->only(['email']));
 
-        if (!$user || $user->is_first_admin || !$user->permission) {
+        if (!$user || $user->is_super_admin || !$user->permission) {
             return ;
         }
         return $this->sendEmailResetPassword($user);

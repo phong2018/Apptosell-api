@@ -33,6 +33,7 @@ class CheckExpiredService extends BaseService
         $credentials = $this->data->only(['email', 'token'])->toArray();
         $user = $this->broker()->getUser($credentials);
 
+
         if (!$this->tokenExists($user, $credentials['token'])) {
             return false;
         }

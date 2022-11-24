@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Admin;
 
+use App\Http\Resources\Role\RoleResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AdminResource extends JsonResource
@@ -20,10 +21,13 @@ class AdminResource extends JsonResource
         $result = $this->resource->only([
             'id',
             'name',
-            'is_first_admin',
+            'is_super_admin',
             'email',
-            'permission'
+            'permission',
+            'role_id'
         ]);
+
+        $result['role'] = new RoleResource($this->whenLoaded('role'));
 
         return $result;
     }

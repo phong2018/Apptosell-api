@@ -20,7 +20,7 @@ class AdminRepository extends BaseRepository
     public function allowRelations()
     {
         return [
-
+            'role'
         ];
     }
 

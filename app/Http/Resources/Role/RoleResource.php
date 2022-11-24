@@ -20,7 +20,9 @@ class RoleResource extends JsonResource
         $result = $this->resource->only([
             'id',
             'name',
-            'note'
+            'note',
+            'route',
+            'permissions'
         ]);
 
         return $result;

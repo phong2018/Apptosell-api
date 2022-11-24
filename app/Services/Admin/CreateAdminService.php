@@ -2,7 +2,6 @@
 
 namespace App\Services\Admin;
 
-use App\Common\StrHelper;
 use App\Enums\CacheTime;
 use App\Notifications\EmailAfterCreateAdminNotification;
 use App\Repositories\AdminRepository;
@@ -34,10 +33,11 @@ class CreateAdminService extends BaseService
             $dataAdmin = $this->data->only([
                 'name',
                 'email',
-                'permission'
+                'permission',
+                'role_id'
             ])->toArray();
 
-            $dataAdmin['password'] = rand(10000000,99999999);
+            $dataAdmin['password'] = rand(10000000, 99999999);
 
             $admin = $this->repository->create($dataAdmin);
 

@@ -52,6 +52,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
         $this->mapWebRoutes();
         $this->mapApiAdminsRoutes();
+        $this->mapApiCooperatorsRoutes();
+        $this->mapApiEmployeesRoutes();
         $this->mapApiUsersRoutes();
         $this->mapApiGuestsRoutes();
     }
@@ -92,6 +94,24 @@ class RouteServiceProvider extends ServiceProvider
             ->name('admins.')
             ->namespace($this->namespace . '\Api\Admin')
             ->group(base_path('routes/api.admins.php'));
+    }
+
+    protected function mapApiCooperatorsRoutes()
+    {
+        Route::prefix('api/cooperators')
+            ->middleware(['api'])
+            ->name('cooperators.')
+            ->namespace($this->namespace . '\Api\Cooperator')
+            ->group(base_path('routes/api.cooperators.php'));
+    }
+
+    protected function mapApiEmployeesRoutes()
+    {
+        Route::prefix('api/employees')
+            ->middleware(['api'])
+            ->name('employees.')
+            ->namespace($this->namespace . '\Api\Employee')
+            ->group(base_path('routes/api.employees.php'));
     }
 
     protected function mapApiUsersRoutes()

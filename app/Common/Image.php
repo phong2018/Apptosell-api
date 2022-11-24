@@ -11,6 +11,7 @@ use App\Common\Timezone;
 
 class Image
 {
+    const IMAGES_PATH = 'images/';
     const TMP_PATH = 'tmp';
     const TMP_EXPIRED = '+4 hours';
     use ImageTrait;
@@ -111,7 +112,7 @@ class Image
 
     public static function createImagesTempPath($days = 0)
     {
-        return self::TMP_PATH . '/' . Carbon::now()->subdays($days)->tz(Timezone::TIMEZONE_TOKYO)->format('Y-m-d');
+        return self::TMP_PATH . '/' . Carbon::now()->subdays($days)->tz(Timezone::TIMEZONE_DEFAULT)->format('Y-m-d');
     }
 
     /**
@@ -136,7 +137,7 @@ class Image
      */
     public static function getPreSigned($file_name, $path)
     {
-        $path = self::createImagesTempPath() . '/' . trim($path, '/') . time() . trim($file_name, '/');
+        $path = self::IMAGES_PATH . trim($path, '/') . '/' . time() . '-' . trim($file_name, '/');
         $client = self::s3Client();
 
         $command = $client->getCommand('PutObject', [

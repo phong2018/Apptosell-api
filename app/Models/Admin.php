@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Traits\HasPassword;
 use App\Models\Traits\Role;
+use App\Models\Role as RoleAdmin;
 use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Mi\L9DBEncrypt\Traits\EncryptedAttribute;
@@ -28,8 +29,9 @@ class Admin extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'is_first_admin',
-        'permission'
+        'is_super_admin',
+        'permission',
+        'role_id'
     ];
     /* attributes need encrypt */
     protected $encryptable = [
@@ -65,5 +67,10 @@ class Admin extends Authenticatable implements JWTSubject
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new AdminResetPasswordNotification($token));
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(RoleAdmin::class);
     }
 }

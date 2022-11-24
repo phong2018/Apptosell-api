@@ -20,9 +20,14 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->smallInteger ('is_super_admin')->default(0);
+            $table->bigInteger('role_id')->nullable();
             $table->smallInteger ('permission')->default(1);
+
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('roles');
+
         });
     }
 

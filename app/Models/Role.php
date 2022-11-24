@@ -13,6 +13,12 @@ class Role extends Model
 
     protected $fillable = [
         'name',
-        'note'
+        'note',
+        'route',
+        'permissions'
+    ];
+
+    protected $casts = [
+        'permissions' => 'json'
     ];
 }

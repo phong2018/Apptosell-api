@@ -2,6 +2,7 @@
 
 namespace App\Services\Auth\Traits;
 
+use App\Enums\CacheTime;
 use Illuminate\Support\Facades\Password;
 use App\Models\PasswordReset;
 use App\Repositories\PasswordResetRepository;
@@ -61,7 +62,7 @@ trait HasPasswordBroker
      */
     protected function tokenExpired($createdAt)
     {
-        return Carbon::parse($createdAt)->addSeconds(config('auth.passwords.factories.expire') * 60)->isPast();
+        return Carbon::parse($createdAt)->addSeconds(CacheTime::CACHE_VERIFY_EMAIL * 24 * 60 * 60)->isPast();
     }
 
 

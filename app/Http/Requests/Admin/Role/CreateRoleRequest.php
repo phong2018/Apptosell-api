@@ -33,6 +33,19 @@ class CreateRoleRequest extends BaseRequest
                 'bail',
                 'required',
                 'string'
+            ],
+            'route' => [
+                'bail',
+                'required',
+                'string'
+            ],
+            'permissions' => [
+                'nullable',
+                'array'
+            ],
+            'permissions.*' => [
+                'nullable',
+                'string'
             ]
         ];
     }

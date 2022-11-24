@@ -44,6 +44,11 @@ class CreateAdminRequest extends BaseRequest
                 'bail',
                 'required',
                 'boolean'
+            ],
+            'role_id' => [
+                'bail',
+                'required',
+                Rule::exists('roles', 'id')->whereNull('deleted_at')
             ]
         ];
     }

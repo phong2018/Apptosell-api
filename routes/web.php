@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('routes', function() {
-    $routeCollection = Route::getRoutes();
+    $routes = Route::getRoutes();
 
-
+    dd($routes);
 });

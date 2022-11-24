@@ -21,6 +21,7 @@ class BaseRequest extends FormRequest
     const WITH_DEFAULT_LENGTH = 500;
 
     const MAX_SIZE_IMAGE = 5130;
+    const PATH_IMAGE = '/.(?:png|jpe?g)$/i';
 
     /**
      * Common list rules

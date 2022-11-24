@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('thread_posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('note')->nullable();
-            $table->json('permissions')->nullable();
+            $table->bigInteger('thread_id');
+            $table->bigInteger('post_id');
             $table->timestamps();
-            $table->softDeletes();
+            $table->foreign('thread_id')->references('id')->on('threads');
+            $table->foreign('post_id')->references('id')->on('posts');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('thread_posts');
     }
 };

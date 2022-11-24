@@ -9,12 +9,17 @@ Route::controller(AuthenticateController::class)->group(function () {
     Route::post('check-expired', 'checkExpired')->name('check-expired');
 });
 
-Route::group(['middleware' => ['auth:admins']], function () {
+Route::group(['middleware' => ['auth:admins', 'role']], function () {
     Route::apiResource('accounts', AdminController::class);
+    Route::apiResource('settings', SettingController::class);
     Route::controller(AdminController::class)->group(function () {
         Route::post('logout', 'logout')->name('logout');
         Route::post('change-password', 'changePassword')->name('change-password');
     });
     Route::apiResource('service-menus', ServiceMenuController::class)->except('destroy');
     Route::apiResource('roles', RoleController::class)->except('destroy');
+    Route::controller(ImageController::class)->group(function () {
+        Route::get('images', 'index')->name('images.index');
+        Route::post('images/pre-signed-image', 'preSignedImage')->name('images.pre-signed-image');
+    });
 });
