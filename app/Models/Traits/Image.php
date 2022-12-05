@@ -4,7 +4,6 @@ namespace App\Models\Traits;
 
 use Aws\S3\S3Client;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ImageResize;
 
 trait Image
 {
@@ -37,16 +36,5 @@ trait Image
         ];
 
         return new S3Client($config);
-    }
-
-    public function createCacheImageIfNotExist($image)
-    {
-        $img = ImageResize::make($image);
-        $img->resize(100, 100, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        Storage::put('file6.png', $img->stream());
-
-        return 'cache/'.$image;
     }
 }

@@ -21,5 +21,7 @@ Route::group(['middleware' => ['auth:admins', 'role']], function () {
     Route::controller(ImageController::class)->group(function () {
         Route::get('images', 'index')->name('images.index');
         Route::post('images/pre-signed-image', 'preSignedImage')->name('images.pre-signed-image');
+        Route::post('images/store-public-image', 'storePublicImage')->name('images.storePublicImage');
+        Route::delete('images/delete-path', 'deletePath')->name('images.deletePath');
     });
 });

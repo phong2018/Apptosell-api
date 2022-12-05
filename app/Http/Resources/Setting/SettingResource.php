@@ -20,10 +20,8 @@ class SettingResource extends JsonResource
         $result = $this->resource->only([
             'id',
             'name',
-            'note',
-            'image',
-            'image_url',
-            'is_use'
+            'content',
+            'status'
         ]);
 
         return $result;

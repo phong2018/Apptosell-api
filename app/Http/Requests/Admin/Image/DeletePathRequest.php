@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Setting;
+namespace App\Http\Requests\Admin\Image;
 
 use App\Http\Requests\BaseRequest;
 
-class UpdateSettingRequest extends BaseRequest
+class DeletePathRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,14 @@ class UpdateSettingRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required',
-                'string'
-            ],
-            'content' => [
-                'nullable'
-            ],
-            'status' => [
+            'images' => [
                 'nullable',
-                'boolean'
-            ]
+                'array'
+            ],
+            'directories' => [
+                'nullable',
+                'array'
+            ],
         ];
     }
 }

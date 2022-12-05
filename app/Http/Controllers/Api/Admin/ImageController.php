@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Image\DeletePathRequest;
 use App\Http\Requests\Admin\Image\ListImageRequest;
 use App\Http\Requests\Admin\Image\PreSignedImageRequest;
+use App\Http\Requests\Admin\Image\StorePublicImageRequest;
+use App\Services\Image\DeletePathService;
 use App\Services\Image\ListImageService;
 use App\Services\Image\PreSignedImageService;
+use App\Services\Image\StorePublicImageService;
 
 class ImageController extends Controller
 {
@@ -30,5 +34,19 @@ class ImageController extends Controller
     {
         $listImages = resolve(ListImageService::class)->setRequest($request)->handle();
         return response()->success($listImages);
+    }
+
+    public function storePublicImage(StorePublicImageRequest $request)
+    {
+        $respone = resolve(StorePublicImageService::class)->setRequest($request)->handle();
+
+        return response()->success($respone);
+    }
+
+    public function deletePath(DeletePathRequest $request)
+    {
+        resolve(DeletePathService::class)->setRequest($request)->handle();
+
+        return response()->successWithoutData();
     }
 }

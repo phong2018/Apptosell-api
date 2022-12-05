@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Traits\Image as ImageTrait;
 use Carbon\Carbon;
 use App\Common\Timezone;
+use Intervention\Image\Facades\Image as ImageResize;
 
 class Image
 {
+    const CACHE_PATH = 'cache/';
     const IMAGES_PATH = 'images/';
     const TMP_PATH = 'tmp';
     const TMP_EXPIRED = '+4 hours';
@@ -24,9 +26,11 @@ class Image
      * @param String $prefix
      * @return string
      */
-    public static function generateStorageImage($file, $options = [], $name = null, $prefix = 'images/')
+    public static function generateStorageImage($file, $options = [], $name = null, $path = '')
     {
-        $path = $prefix . time() . uniqid();
+        if (!$path) {
+            $path = self::IMAGES_PATH . 'dates/'  . Carbon::now()->tz(Timezone::TIMEZONE_DEFAULT)->format('Y-m-d') . '/' . time() . uniqid();
+        }
 
         $filename = $file->getClientOriginalName();
         if (!empty($name)) {
@@ -163,5 +167,21 @@ class Image
     public static function moveImage($source, $destination)
     {
         return Storage::move($source, $destination);
+    }
+
+    public static function createCacheImageIfNotExist($imagePath)
+    {
+        $cacheImage = self::CACHE_PATH . $imagePath;
+        if (Storage::exists($cacheImage)) {
+            return $cacheImage;
+        }
+
+        $img = ImageResize::make(Storage::get($imagePath));
+        $img->resize(100, 100, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        Storage::put($cacheImage, $img->stream());
+
+        return $cacheImage;
     }
 }

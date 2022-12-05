@@ -21,10 +21,10 @@ class CreateSettingService extends BaseService
      */
     public function handle()
     {
-        $data = $this->data->all();
-        if (isset($data['image'])) {
-            $data['image'] = Image::generateStorageImage($data['image']);
-        }
-        return $this->repository->create($data);
+        return $this->repository->create($this->data->only([
+            'name',
+            'content',
+            'status'
+        ])->toArray());
     }
 }

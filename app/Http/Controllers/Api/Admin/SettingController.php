@@ -75,6 +75,6 @@ class SettingController extends Controller
      */
     public function destroy(int $id)
     {
-
+        return true;
     }
 }

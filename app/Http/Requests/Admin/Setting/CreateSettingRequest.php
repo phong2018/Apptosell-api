@@ -25,19 +25,11 @@ class CreateSettingRequest extends BaseRequest
     {
         return [
             'name' => [
-                'bail',
-                'required',
-                'string'
-            ],
-            'type' => [
-                'bail',
                 'required',
                 'string'
             ],
             'content' => [
-                'bail',
-                'required',
-                'string'
+                'nullable'
             ],
             'status' => [
                 'nullable',
