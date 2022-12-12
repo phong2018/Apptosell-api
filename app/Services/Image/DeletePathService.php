@@ -19,14 +19,14 @@ class DeletePathService extends BaseService
     {
         if ($this->data->get('images')) {
             $cacheImages = collect($this->data->get('images'))->map(function ($item) {
-               return CommonImage::CACHE_PATH . $item;
+                return CommonImage::CACHE_PATH . $item;
             })->toArray();
             Storage::delete($this->data->get('images'));
             Storage::delete($cacheImages);
         }
 
         if ($this->data->get('directories')) {
-            foreach($this->data->get('directories') as $directory) {
+            foreach ($this->data->get('directories') as $directory) {
                 Storage::deleteDirectory($directory);
                 Storage::deleteDirectory(CommonImage::CACHE_PATH . $directory);
             }

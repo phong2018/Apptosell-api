@@ -25,8 +25,8 @@ class StorePublicImageService extends BaseService
 
         if ($this->data->get('uploads')) {
             $urls = [];
-            foreach($this->data->get('uploads') as $upload) {
-                $urls[] =  $this->generateUrl(CommonImage::generateStorageImage($upload, [], null, $this->data->get('file_pạth')), true);
+            foreach ($this->data->get('uploads') as $upload) {
+                $urls[] =  $this->generateUrl(CommonImage::generateStorageImage($upload, [], null, $this->data->get('file_pạth')));
             }
             return $urls;
         }

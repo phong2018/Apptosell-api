@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Services\Setting;
+namespace App\Services\Thread;
 
-use App\Repositories\SettingRepository;
+use App\Repositories\ThreadRepository;
 use Mi\L5Core\Services\BaseService;
 
-class CreateSettingService extends BaseService
+class UpdateThreadService extends BaseService
 {
     protected $collectsData = true;
 
     public function __construct(
-        SettingRepository $repository
+        ThreadRepository $repository
     ) {
         $this->repository = $repository;
     }
@@ -20,9 +20,10 @@ class CreateSettingService extends BaseService
      */
     public function handle()
     {
-        return $this->repository->create($this->data->only([
+        return $this->repository->update($this->model->id, $this->data->only([
             'name',
             'content',
+            'sort_order',
             'status'
         ])->toArray());
     }

@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->text('content')->nullable();
             $table->text('sort_order')->nullable();
-            $table->text('status')->nullable();
+            $table->smallInteger('status')->nullable();
             $table->string('image')->nullable();
+            $table->dateTime('publish_date')->nullable();
             $table->timestamps();
         });
     }

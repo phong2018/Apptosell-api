@@ -107,18 +107,6 @@ class Image
         return $path . '/' . $filename;
     }
 
-     /**
-     * create path tmp images folder
-     *
-     * @param int $days
-     * @return String
-     */
-
-    public static function createImagesTempPath($days = 0)
-    {
-        return self::TMP_PATH . '/' . Carbon::now()->subdays($days)->tz(Timezone::TIMEZONE_DEFAULT)->format('Y-m-d');
-    }
-
     /**
      * remove tmp images folder
      *

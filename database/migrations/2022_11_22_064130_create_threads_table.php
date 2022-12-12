@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('content')->nullable();
             $table->text('sort_order')->nullable();
-            $table->text('status')->nullable();
+            $table->smallInteger('status')->nullable();
             $table->timestamps();
         });
     }

@@ -24,4 +24,6 @@ Route::group(['middleware' => ['auth:admins', 'role']], function () {
         Route::post('images/store-public-image', 'storePublicImage')->name('images.storePublicImage');
         Route::delete('images/delete-path', 'deletePath')->name('images.deletePath');
     });
+    Route::apiResource('threads', ThreadController::class);
+    Route::apiResource('posts', PostController::class);
 });

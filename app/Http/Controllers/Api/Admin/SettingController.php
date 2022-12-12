@@ -9,8 +9,9 @@ use App\Http\Requests\Admin\Setting\ShowSettingRequest;
 use App\Http\Requests\Admin\Setting\UpdateSettingRequest;
 use App\Http\Resources\Setting\SettingCollection;
 use App\Http\Resources\Setting\SettingResource;
-
+use App\Models\Setting;
 use App\Services\Setting\CreateSettingService;
+use App\Services\Setting\DeleteSettingService;
 use App\Services\Setting\ListSettingService;
 use App\Services\Setting\ShowSettingService;
 use App\Services\Setting\UpdateSettingService;
@@ -70,11 +71,12 @@ class SettingController extends Controller
      /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(Setting $setting)
     {
-        return true;
+        resolve(DeleteSettingService::class)->setModel($setting)->handle();
+        return response()->successWithoutData();
     }
 }
