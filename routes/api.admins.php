@@ -26,4 +26,7 @@ Route::group(['middleware' => ['auth:admins', 'role']], function () {
     });
     Route::apiResource('threads', ThreadController::class);
     Route::apiResource('posts', PostController::class);
+    Route::apiResource('tests', TestController::class);
+    Route::apiResource('questions', QuestionController::class);
+    Route::apiResource('answers', AnswerController::class);
 });

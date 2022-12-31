@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('thread_posts', function (Blueprint $table) {
+        Schema::create('tests', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('content')->nullable();
+            $table->text('result')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('time_test')->default(0);
+            $table->integer('sort_order')->default(0);
+            $table->smallInteger('status')->nullable();
             $table->timestamps();
-
-            $table->foreignId('thread_id')->constrained('threads')->nullable()->cascadeOnDelete();
-            $table->foreignId('post_id')->constrained('posts')->nullable()->cascadeOnDelete();
         });
     }
 
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thread_posts');
+        Schema::dropIfExists('tests');
     }
 };

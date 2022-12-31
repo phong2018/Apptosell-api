@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('thread_posts', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
+            $table->text('content');
+            $table->integer('point')->default(0);
             $table->timestamps();
-
-            $table->foreignId('thread_id')->constrained('threads')->nullable()->cascadeOnDelete();
-            $table->foreignId('post_id')->constrained('posts')->nullable()->cascadeOnDelete();
+            $table->foreignId('question_id')->constrained('questions')->nullable()->cascadeOnDelete();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thread_posts');
+        Schema::dropIfExists('answers');
     }
 };

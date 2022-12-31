@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Services\Post;
+namespace App\Services\Test;
 
 use App\Common\Image;
-use App\Repositories\PostRepository;
+use App\Repositories\TestRepository;
 use Illuminate\Support\Facades\DB;
 use Mi\L5Core\Services\BaseService;
 
-class UpdatePostService extends BaseService
+class UpdateTestService extends BaseService
 {
     protected $collectsData = true;
 
     public function __construct(
-        PostRepository $repository
+        TestRepository $repository
     ) {
         $this->repository = $repository;
     }
@@ -31,9 +31,6 @@ class UpdatePostService extends BaseService
         }
         return DB::transaction(function () use ($data) {
             $this->repository->update($this->model->id, $data);
-            if ($this->data->get('threads')) {
-                $this->model->threads()->sync($this->data->get('threads'));
-            }
             return $this->model;
         });
 

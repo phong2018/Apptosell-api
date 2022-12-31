@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\QuestionType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('thread_posts', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->text('content');
+            $table->integer('type')->default(QuestionType::SINGLE_CHOICE);
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
-
-            $table->foreignId('thread_id')->constrained('threads')->nullable()->cascadeOnDelete();
-            $table->foreignId('post_id')->constrained('posts')->nullable()->cascadeOnDelete();
+            $table->foreignId('test_id')->constrained('tests')->nullable()->cascadeOnDelete();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thread_posts');
+        Schema::dropIfExists('questions');
     }
 };
