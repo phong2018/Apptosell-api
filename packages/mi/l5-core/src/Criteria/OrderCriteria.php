@@ -83,7 +83,7 @@ class OrderCriteria implements CriteriaInterface
             }
 
             // order by normal field
-            $model = $desc ? $model->orderByRaw($field . ' DESC NULLS LAST') : $model->orderBy($field);
+            $model = $desc ? $model : $model->orderBy($field);
         }
 
         return $model;

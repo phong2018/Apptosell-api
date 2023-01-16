@@ -17,7 +17,7 @@ class StorePublicImageService extends BaseService
     public function handle()
     {
         if ($this->data->get('upload')) {
-            $imagePath = CommonImage::generateStorageImage($this->data->get('upload'), [], null, $this->data->get('file_pạth'));
+            $imagePath = CommonImage::generateStorageImage($this->data->get('upload'), ['visibility' => 'public'], null, $this->data->get('file_pạth'));
             return [
                 'url' => $this->generateUrl($imagePath, true)
             ];

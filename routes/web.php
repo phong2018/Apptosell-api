@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    echo 'vv';
-    Artisan::call('migrate');
+
+    Artisan::call('storage:link');
+    // Artisan::call('telescope:install');
+    // Artisan::call('vendor:publish --tag=telescope-migrations');
+    // Artisan::call('optimize:clear');
+    // Artisan::call('migrate');
     // Artisan::call('db:seed --class=AddSuperAdminSeeder');
 
     // return view('welcome');
