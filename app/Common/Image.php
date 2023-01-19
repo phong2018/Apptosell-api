@@ -26,7 +26,7 @@ class Image
      * @param String $prefix
      * @return string
      */
-    public static function generateStorageImage($file, $options = ['visibility' => 'private'], $name = null, $path = '')
+    public static function generateStorageImage($file, $options = ['visibility' => 'public'], $name = null, $path = '')
     {
         if (!$path) {
             $path = self::IMAGES_PATH . 'dates/'  . Carbon::now()->tz(Timezone::TIMEZONE_DEFAULT)->format('Y-m-d') . '/' . time() . uniqid();

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->integer('point')->default(0);
+            $table->double('point', 8, 2)->default(0);
             $table->timestamps();
             $table->foreignId('question_id')->constrained('questions')->nullable()->cascadeOnDelete();
         });

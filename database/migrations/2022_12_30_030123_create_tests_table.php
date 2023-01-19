@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->text('result')->nullable();
             $table->string('image')->nullable();
+            $table->string('tag')->nullable()->index();
             $table->integer('time_test')->default(0);
             $table->integer('sort_order')->default(0);
             $table->smallInteger('status')->nullable();

@@ -24,6 +24,7 @@ class TestResource extends JsonResource
             'content',
             'result',
             'image',
+            'tag',
             'status',
             'sort_order',
             'time_test',

@@ -44,6 +44,10 @@ class UpdateTestRequest extends BaseRequest
                 'mimes:jpg,jpeg,png',
                 'max:'. self::MAX_SIZE_IMAGE,
             ],
+            'tag' => [
+                'nullable',
+                'string'
+            ],
             'sort_order' => [
                 'nullable',
                 'integer'

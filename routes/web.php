@@ -19,7 +19,7 @@ Route::get('/', function () {
     Artisan::call('storage:link');
     // Artisan::call('telescope:install');
     // Artisan::call('vendor:publish --tag=telescope-migrations');
-    // Artisan::call('optimize:clear');
+    Artisan::call('optimize:clear');
     // Artisan::call('migrate');
     // Artisan::call('db:seed --class=AddSuperAdminSeeder');
 

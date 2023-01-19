@@ -16,6 +16,7 @@ class Test extends Model
         'content',
         'result',
         'image',
+        'tag',
         'sort_order',
         'time_test',
         'status'
