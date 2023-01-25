@@ -31,6 +31,10 @@ class ListTestRequest extends BaseRequest
             'name' => [
                 'nullable',
                 'string',
+            ],
+            'status' => [
+                'nullable',
+                'boolean',
             ]
         ]);
     }

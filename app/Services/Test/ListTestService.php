@@ -4,6 +4,7 @@ namespace App\Services\Test;
 
 use App\Filters\Id;
 use App\Filters\Name;
+use App\Filters\Status;
 use App\Repositories\TestRepository;
 use Mi\L5Core\Criteria\FilterCriteria;
 use Mi\L5Core\Criteria\OrderCriteria;
@@ -37,7 +38,8 @@ class ListTestService extends BaseService
     {
         return [
             'id' => Id::class,
-            'name' => Name::class
+            'name' => Name::class,
+            'status' => Status::class
         ];
     }
 }

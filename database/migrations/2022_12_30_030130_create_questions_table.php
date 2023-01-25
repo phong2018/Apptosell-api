@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->integer('type')->default(QuestionType::SINGLE_CHOICE);
+            $table->double('point', 8, 2)->default(0);
             $table->integer('sort_order')->default(0);
             $table->timestamps();
             $table->foreignId('test_id')->constrained('tests')->nullable()->cascadeOnDelete();

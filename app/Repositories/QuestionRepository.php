@@ -29,6 +29,7 @@ class QuestionRepository extends BaseRepository
     {
         return [
             'created_at',
+            'sort_order',
             'id'
         ];
     }

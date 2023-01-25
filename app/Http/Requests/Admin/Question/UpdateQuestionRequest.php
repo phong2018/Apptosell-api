@@ -33,6 +33,9 @@ class UpdateQuestionRequest extends BaseRequest
                 'nullable',
                 'integer'
             ],
+            'point' => [
+                'required'
+            ],
             'sort_order' => [
                 'nullable',
                 'integer'

@@ -15,6 +15,7 @@ class Question extends Model
     protected $fillable = [
         'content',
         'type',
+        'point',
         'sort_order',
         'test_id'
     ];

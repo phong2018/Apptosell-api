@@ -35,6 +35,9 @@ class CreateQuestionRequest extends BaseRequest
                 'integer',
                 Rule::in(QuestionType::getQuestionType())
             ],
+            'point' => [
+                'required'
+            ],
             'sort_order' => [
                 'nullable',
                 'integer'
