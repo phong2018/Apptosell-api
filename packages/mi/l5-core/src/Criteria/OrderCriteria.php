@@ -82,8 +82,8 @@ class OrderCriteria implements CriteriaInterface
                     }, $field);
             }
 
-            // order by normal field
-            $model = $desc ? $model : $model->orderBy($field);
+            // order by normal field for
+            $model = $desc ? $model->orderBy($field, 'DESC') : $model->orderBy($field);
         }
 
         return $model;
