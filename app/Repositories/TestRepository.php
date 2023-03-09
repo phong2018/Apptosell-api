@@ -29,7 +29,8 @@ class TestRepository extends BaseRepository
     {
         return [
             'created_at',
-            'id'
+            'id',
+            'sort_order'
         ];
     }
 }
